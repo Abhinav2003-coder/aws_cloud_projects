@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Membership System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+            background-color: #f4f4f4;
+        }
+
+        .form-container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 400px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            width: 100%;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        #message {
+            margin-top: 15px;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="form-container">
+        <h2>Gym Registration</h2>
+        <input type="text" id="userId" placeholder="Enter Unique User ID (e.g. GYM001)">
+        <input type="text" id="name" placeholder="Enter Full Name">
+        <input type="email" id="email" placeholder="Enter Email Address">
+        <button onclick="registerMember()">Register Now</button>
+        <p id="message"></p>
+    </div>
+
+    <script>
+        // Aapki exact AWS API Gateway URL yahan set kar di hai:
+        const API_URL = "https://YOUR_API_ID.execute-api.us-east-1.amazonaws.com/dev/member";
+
+        async function registerMember() {
+            const userId = document.getElementById('userId').value.trim();
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const messageElement = document.getElementById('message');
+
+            // Sabhi fields ko check karna
+            if (!userId || !name || !email) {
+                alert("Sari fields bharna zaroori hai!");
+                return;
+            }
+
+            // Data object jo AWS Lambda ko chahiye
+            const userData = {
+                userId: userId,
+                name: name,
+                email: email
+            };
+
+            try {
+                messageElement.style.color = "blue";
+                messageElement.innerText = "Sending data to AWS...";
+
+                // API Gateway ko call karna
+                const response = await fetch(API_URL, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(userData)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    messageElement.style.color = "green";
+                    messageElement.innerText = "Success: " + (result.message || "Data saved!");
+                } else {
+                    messageElement.style.color = "red";
+                    messageElement.innerText = "Backend Error: " + (result.error || "Failed");
+                }
+            } catch (error) {
+                messageElement.style.color = "red";
+                messageElement.innerText = "Error connecting to backend!";
+                console.error("Fetch Error:", error);
+            }
+        }
+    </script>
+
+</body>
+
+</html>
