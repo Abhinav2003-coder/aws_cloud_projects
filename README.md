@@ -1,18 +1,23 @@
-# ☁️ My AWS & Cloud Engineering Portfolio
+# ☁️ AWS Cloud Projects Portfolio
 
-Welcome to my Cloud Projects repository! This space contains hands-on serverless applications built on **Amazon Web Services (AWS)**.
+A collection of full-stack serverless web applications built on **AWS**. These projects demonstrate cloud architecture, serverless computing, REST APIs, database management, and authentication.
 
-## 📂 Projects List
+## 🚀 Projects Included
 
-| # | Project Name | AWS Services Used | Status |
-|---|---|---|---|
-| **01** | [Serverless Student Attendance System](./01-serverless-attendance-system) | AWS Lambda (Node.js), API Gateway, Amazon Cognito, DynamoDB | ✅ Completed |
+### 1. 📝 Serverless Student Attendance Management System
+* **Description:** A full-stack serverless web application to track and manage student attendance securely.
+* **Tech Stack:** AWS Lambda, Amazon DynamoDB, Amazon API Gateway, Amazon Cognito, S3.
+* **Folder:** `[Serverless-Attendance-System](./Serverless-Attendance-System)`
+
+### 2. 🏋️‍♂️ Serverless Gym Membership System
+* **Description:** A cloud-native web application for managing gym memberships, user profiles, and active plans without managing servers.
+* **Tech Stack:** AWS Lambda, Amazon DynamoDB, Amazon API Gateway, Amazon Cognito, S3, CloudFront.
+* **Folder:** `[Serverless-Gym-Membership-System](./Serverless-Gym-Membership-System)`
+
+### 3. 🎟️ Serverless Ticket Booking System
+* **Description:** An event-driven serverless backend system designed to handle event listings and seat bookings with concurrency safety.
+* **Tech Stack:** AWS Lambda (Node.js), Amazon DynamoDB, Amazon API Gateway.
+* **Folder:** `[Serverless-Ticket-Booking-System](./Serverless-Ticket-Booking-System)`
 
 ---
-
-## 🛠️ AWS Services & Skills I Have Worked With
-* **Compute:** AWS Lambda (Node.js / ES Modules)
-* **API Management:** Amazon API Gateway (REST APIs, CORS Configuration)
-* **Security & Identity:** Amazon Cognito (User Pools), AWS IAM (Roles & Policies)
-* **Database:** Amazon DynamoDB (NoSQL)
-* **Frontend Integration:** HTML5, CSS3, JavaScript (Fetch API)
+*Built with passion to master AWS Cloud & Serverless Architecture.*
