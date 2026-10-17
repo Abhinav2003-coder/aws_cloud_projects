@@ -1,4 +1,4 @@
-# 🎟️ Cloud Event Pass Generator
+# 🎟️ QR Event Pass Generator
 
 A simple AWS Serverless project that generates a unique QR Code Event Pass when a user fills out the registration form.
 
