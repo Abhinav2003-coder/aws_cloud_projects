@@ -3,7 +3,7 @@
 A simple AWS Serverless project that generates a unique QR Code Event Pass when a user fills out the registration form.
 
 ## 🛠️ Tech Stack
-* **Frontend:** HTML, CSS, JavaScript
+* **Frontend:** HTML
 * **AWS Services:** AWS Lambda (Python), Amazon DynamoDB, Amazon S3, IAM
 
 ## ⚙️ How It Works
