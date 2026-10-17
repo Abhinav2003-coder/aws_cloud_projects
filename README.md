@@ -22,7 +22,7 @@ A collection of full-stack serverless web applications built on **AWS**. These p
 ### 4. 🪪 Cloud Event Pass Generator
 - **Description:** A serverless application that generates unique QR-coded digital event passes, stores attendee records in DynamoDB, and delivers secure download links via S3 Presigned URLs.
 - **Tech Stack:** AWS Lambda (Python), Amazon DynamoDB, Amazon S3, AWS IAM.
-- **Folder:** [04-QR-Event-Pass-Generator](./04-QR-Event-Pass-Generator)
+- **Folder:** [04-QR Event Pass Generator](./04-QR-EventPass-Generator)
 
 ---
 *Built with passion to master AWS Cloud & Serverless Architecture.*
