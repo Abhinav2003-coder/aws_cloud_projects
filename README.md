@@ -16,8 +16,13 @@ A collection of full-stack serverless web applications built on **AWS**. These p
 
 ### 3. 🎟️ Serverless Ticket Booking System
 * **Description:** An event-driven serverless backend system designed to handle event listings and seat bookings with concurrency safety.
-* **Tech Stack:** AWS Lambda (Node.js), Amazon DynamoDB, Amazon API Gateway.
+* **Tech Stack:** AWS Lambda , Amazon DynamoDB, Amazon API Gateway.
 * **Folder:** `[Serverless-Ticket-Booking-System](./Serverless-Ticket-Booking-System)`
+
+### 4. 🪪 Cloud Event Pass Generator
+- **Description:** A serverless application that generates unique QR-coded digital event passes, stores attendee records in DynamoDB, and delivers secure download links via S3 Presigned URLs.
+- **Tech Stack:** AWS Lambda (Python), Amazon DynamoDB, Amazon S3, AWS IAM.
+- **Folder:** [04-QR-Event-Pass-Generator](./04-QR-Event-Pass-Generator)
 
 ---
 *Built with passion to master AWS Cloud & Serverless Architecture.*
