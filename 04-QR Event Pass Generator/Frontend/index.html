@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Event Pass Registration</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #0f172a;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .card {
+            background: #1e293b;
+            padding: 32px;
+            border-radius: 16px;
+            width: 360px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            border: 1px solid #334155;
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #38bdf8;
+        }
+
+        label {
+            font-size: 13px;
+            color: #94a3b8;
+            display: block;
+            margin-top: 14px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 11px;
+            margin-top: 6px;
+            border-radius: 8px;
+            border: 1px solid #475569;
+            background: #0f172a;
+            color: white;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 22px;
+            background: #38bdf8;
+            color: #0f172a;
+            font-weight: bold;
+            font-size: 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0284c7;
+            color: white;
+        }
+
+        #output {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .pass-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 16px;
+            background: #22c55e;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+        <h2>🎟️ Cloud Event Pass</h2>
+        <p style="font-size:13px; color:#94a3b8; margin-top:-5px;">Serverless QR Ticket Generator on AWS</p>
+
+        <label>Your Full Name</label>
+        <input type="text" id="name" placeholder="e.g. Aman Sharma" required>
+
+        <label>Email Address</label>
+        <input type="email" id="email" placeholder="e.g. aman@gmail.com" required>
+
+        <label>Select Event</label>
+        <select id="event_name">
+            <option value="AWS Cloud & DevOps Summit 2026">AWS Cloud & DevOps Summit 2026</option>
+            <option value="National Robotics & CAD Expo">National Robotics & CAD Expo</option>
+            <option value="NextGen AI & Serverless Conclave">NextGen AI & Serverless Conclave</option>
+        </select>
+
+        <button onclick="createPass()">Generate My QR Pass</button>
+        <div id="output"></div>
+    </div>
+
+    <script>
+        // NEeche APNA LAMBDA FUNCTION URL PASTE KAREIN:
+        const LAMBDA_URL = "PASTE_YOUR_LAMBDA_FUNCTION_URL_HERE";
+
+        async function createPass() {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const event_name = document.getElementById('event_name').value;
+            const out = document.getElementById('output');
+
+            if (!name || !email) {
+                out.innerHTML = "⚠️ Please fill your Name and Email!";
+                return;
+            }
+
+            out.innerHTML = "⏳ Generating QR Pass on AWS Cloud...";
+
+            try {
+                const res = await fetch(LAMBDA_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, event_name })
+                });
+
+                const data = await res.json();
+
+                if (data.download_url) {
+                    out.innerHTML = `
+            ✅ Pass Created! ID: <b>${data.ticket_id}</b><br>
+            <a class="pass-link" href="${data.download_url}" target="_blank">👉 Open & Download QR Pass</a>
+          `;
+                } else {
+                    out.innerHTML = "❌ Error: " + (data.error || "Check Lambda logs");
+                }
+            } catch (err) {
+                out.innerHTML = "❌ Network/CORS Error. Check Function URL & CORS settings.";
+            }
+        }
+    </script>
+
+</body>
+
+</html>
